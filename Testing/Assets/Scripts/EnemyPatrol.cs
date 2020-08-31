@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : MonoBehaviour
+public class EnemyPatrol : MonoBehaviour
 {
+	Rigidbody rb;
 	public float speed;
     public float distance;
     public bool movingRight = true;
-	public bool isTouching;
-
     public Transform groundDetection;
 	public LayerMask whatIsGround;
+
+	void start()
+	{
+		rb = GetComponent<Rigidbody>();
+	}
 
     // Update is called once per frame
     void fixedUpdate()
     {
-		transform.Translate(Vector3.right * speed * Time.deltaTime);
+		rb.velocity = new Vector3(speed,rb.velocity.y,0);
     	RaycastHit hit;
 		if(Physics.Raycast(groundDetection.position, Vector3.down,out hit, distance) == true){
-			isTouching = true;
             if(movingRight == true)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);

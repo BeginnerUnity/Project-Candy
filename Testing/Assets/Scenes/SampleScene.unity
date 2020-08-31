@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 589862371}
   - component: {fileID: 589862372}
   - component: {fileID: 589862374}
+  - component: {fileID: 589862375}
   - component: {fileID: 589862373}
   m_Layer: 0
   m_Name: Dragon
@@ -310,8 +311,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   isGrounded: []
---- !u!65 &589862373
-BoxCollider:
+--- !u!136 &589862373
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -320,9 +321,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.5930536, z: 1}
-  m_Center: {x: 0, y: 0.08751881, z: 0}
+  m_Radius: 0.44985425
+  m_Height: 0.8997085
+  m_Direction: 1
+  m_Center: {x: -0.050145745, y: -0.26998603, z: 0}
 --- !u!54 &589862374
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -339,6 +341,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!65 &589862375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589862370}
+  m_Material: {fileID: 13400000, guid: 639aa903851c7084a8c712b2e115dcc5, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8885454, y: 1.2230952, z: 1}
+  m_Center: {x: -0.046747267, y: 0.32538736, z: 0}
 --- !u!1 &686640989
 GameObject:
   m_ObjectHideFlags: 3
@@ -523,7 +538,6 @@ GameObject:
   - component: {fileID: 746214253}
   - component: {fileID: 746214252}
   - component: {fileID: 746214251}
-  - component: {fileID: 746214256}
   - component: {fileID: 746214257}
   m_Layer: 0
   m_Name: Cube
@@ -556,7 +570,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746214250}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -618,7 +632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746214250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.02, y: 3, z: 0}
+  m_LocalPosition: {x: 10.02, y: 6.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1627453494}
@@ -626,20 +640,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &746214256
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746214250}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1652484
-  m_Height: 0.56075263
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.22419322, z: 0}
 --- !u!114 &746214257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,8 +652,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f518faf7f6ab9468b5a8abd516d069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
   distance: 2
+  movingRight: 1
   groundDetection: {fileID: 192512856}
   whatIsGround:
     serializedVersion: 2
