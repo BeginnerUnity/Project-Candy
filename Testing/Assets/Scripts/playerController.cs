@@ -18,6 +18,11 @@ public class playerController : MonoBehaviour
 
 	Animator animator;
 
+	//Power-up timer 
+	private float powerUpTimer = 0f;
+	public float powerUpDuration = 20f;
+	private bool powerUpOn = false;
+
 	void Start()
     {
         //Get Rigidbody
@@ -59,6 +64,26 @@ public class playerController : MonoBehaviour
 		}
     }
 
+	public void Update()
+	{
+		//Timer for powerup
+		if (powerUpOn == true)
+		{
+			powerUpTimer += Time.deltaTime;
+
+			if (powerUpTimer > powerUpDuration)
+			{
+				ResetStats();
+				powerUpOn = false;
+			}
+		}
+	}
+
+	public void PowerUpOnTrue()
+    {
+		powerUpOn = true;
+    }
+
 	public void ChocolateBar()
     {
 		//change whatever values you want to the chocolate bar to give
@@ -67,8 +92,23 @@ public class playerController : MonoBehaviour
 		Debug.Log("Chocolate bar was eaten");
     }
 
+	public void Lollipop()
+    {
+		//add power up for lolipop
+		Debug.Log("Player ate a lollipop");
+    }
+
+	public void CandyApple()
+    {
+		//add power up for candy apple
+		Debug.Log("Player ate a candy apple");
+		// Hp + 1 
+    }
+
 	public void ResetStats()
     {
 		//Set the stats back to their default values
+		speed = 10;
+		jump = 20;
     }
 }
