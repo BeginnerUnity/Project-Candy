@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-		Rigidbody rb;
+	Rigidbody rb;
 
-		public float speed;
-		public float jump;
+	public float speed;
+	public float jump;
 
-		public bool isRight;
+	public bool isRight = true;
 
-		public Transform groundCP;
-		public float groundCR;
-		public LayerMask whatIsGround;
-		public Collider[] isGrounded;
-    // Start is called before the first frame update
-    void Start()
+	public Transform groundCP;
+	public float groundCR;
+	public LayerMask whatIsGround;
+	public Collider[] isGrounded;
+
+	Animator animator;
+
+	void Start()
     {
-        rb = GetComponent<Rigidbody>();
-		isRight = true;
+        //Get Rigidbody
+		rb = GetComponent<Rigidbody>();
+
+		//Get Animator 
+		animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 		Collider[] isGrounded = Physics.OverlapSphere(groundCP.position, groundCR, whatIsGround);
 
 		if (Input.GetKey("d") && Input.GetKey("a") == false){
 			rb.velocity = new Vector3(speed,rb.velocity.y,0);
+			var running = animator.GetBool("Running");
+			running = true;
 			if (!isRight){
 				isRight = true;
 				rb.transform.Rotate(0,180,0);
@@ -44,11 +50,25 @@ public class playerController : MonoBehaviour
 		else{
 			rb.velocity = new Vector3(0,rb.velocity.y,0);
 		}
+
 		if (isGrounded.Length >= 1){
 			if (Input.GetKey("space")){
 
 				rb.velocity = new Vector3(rb.velocity.x,jump,0);
 			}
 		}
+    }
+
+	public void ChocolateBar()
+    {
+		//change whatever values you want to the chocolate bar to give
+		speed = 5;
+		jump = 30;
+		Debug.Log("Chocolate bar was eaten");
+    }
+
+	public void ResetStats()
+    {
+		//Set the stats back to their default values
     }
 }
